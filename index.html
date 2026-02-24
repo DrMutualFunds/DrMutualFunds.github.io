@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3GMKK415G7"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-3GMKK415G7');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GRIND — Track Your Standard</title>
@@ -36,6 +28,17 @@
       overflow-x: hidden;
     }
 
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
     /* NAV */
     nav {
       position: fixed;
@@ -44,15 +47,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 24px;
-      background: rgba(8,8,8,0.9);
+      padding: 20px 40px;
+      background: rgba(8,8,8,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 26px;
+      font-size: 28px;
       letter-spacing: 4px;
       color: var(--green);
     }
@@ -61,9 +64,9 @@
       background: var(--green);
       color: #0a2e1a;
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 15px;
+      font-size: 16px;
       letter-spacing: 2px;
-      padding: 10px 22px;
+      padding: 10px 24px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -71,30 +74,6 @@
       transition: opacity 0.2s;
     }
     .nav-cta:hover { opacity: 0.85; }
-
-    .section {
-      padding: 64px 24px;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 10px;
-      letter-spacing: 4px;
-      color: var(--green);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(36px, 10vw, 64px);
-      letter-spacing: 3px;
-      line-height: 1;
-      margin-bottom: 40px;
-    }
-
-    .divider { height: 1px; background: var(--border); }
 
     /* HERO */
     .hero {
@@ -104,213 +83,451 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 100px 24px 60px;
+      padding: 120px 24px 80px;
       position: relative;
     }
 
     .hero-glow {
       position: absolute;
-      top: 40%; left: 50%;
+      top: 30%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(34,197,94,0.07) 0%, transparent 70%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .hero-eyebrow {
-      font-size: 10px; letter-spacing: 4px; color: var(--green);
-      text-transform: uppercase; margin-bottom: 20px;
-      opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
     }
 
     .hero-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(72px, 22vw, 160px);
-      letter-spacing: 6px; line-height: 0.9;
-      opacity: 0; animation: fadeUp 0.7s ease forwards 0.35s;
+      font-size: clamp(80px, 18vw, 180px);
+      letter-spacing: 8px;
+      line-height: 0.9;
+      color: var(--text);
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
     }
 
+    .hero-title span { color: var(--green); }
+
     .hero-tagline {
-      font-size: clamp(10px, 2.5vw, 13px); letter-spacing: 6px;
-      color: var(--muted); text-transform: uppercase; margin-top: 16px;
-      opacity: 0; animation: fadeUp 0.7s ease forwards 0.5s;
+      font-size: clamp(12px, 2vw, 15px);
+      letter-spacing: 6px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
     }
 
     .hero-desc {
-      max-width: 380px; font-size: 13px; line-height: 1.9; color: #777; margin-top: 24px;
-      opacity: 0; animation: fadeUp 0.7s ease forwards 0.65s;
+      max-width: 480px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #888;
+      margin-top: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
     }
 
     .hero-buttons {
-      display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; justify-content: center;
-      opacity: 0; animation: fadeUp 0.7s ease forwards 0.8s;
+      display: flex;
+      gap: 16px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1s;
     }
 
     .btn-primary {
-      background: var(--green); color: #0a2e1a;
-      font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 3px;
-      padding: 16px 36px; border: none; border-radius: 10px; cursor: pointer;
-      text-decoration: none; transition: transform 0.15s, opacity 0.15s; display: inline-block;
+      background: var(--green);
+      color: #0a2e1a;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      padding: 18px 40px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.15s;
     }
     .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
 
     .btn-secondary {
-      background: transparent; color: var(--text);
-      font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 3px;
-      padding: 16px 36px; border: 1.5px solid var(--border); border-radius: 10px;
-      cursor: pointer; text-decoration: none; transition: border-color 0.15s; display: inline-block;
+      background: transparent;
+      color: var(--text);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      padding: 18px 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s;
     }
     .btn-secondary:hover { border-color: #444; }
 
+    /* CALENDAR PREVIEW */
     .calendar-preview {
-      margin-top: 44px;
-      opacity: 0; animation: fadeUp 0.7s ease forwards 1s;
-    }
-
-    .cal-label {
-      font-size: 9px; letter-spacing: 3px; color: var(--muted);
-      text-align: center; margin-bottom: 10px;
+      margin-top: 80px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1.2s;
     }
 
     .mini-calendar {
-      display: grid; grid-template-columns: repeat(7, 1fr);
-      gap: 5px; max-width: 280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      max-width: 320px;
+      margin: 0 auto;
     }
 
     .cal-cell {
-      width: 32px; height: 32px; border-radius: 7px;
-      background: var(--surface); border: 1px solid var(--border);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
     }
     .cal-cell.green { background: #22c55e; border-color: #22c55e; }
     .cal-cell.yellow { background: #eab308; border-color: #eab308; }
     .cal-cell.red { background: #ef4444; border-color: #ef4444; }
     .cal-cell.empty { background: transparent; border-color: transparent; }
 
-    /* STEPS */
-    .steps { display: flex; flex-direction: column; gap: 2px; }
+    .cal-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    /* HOW IT WORKS */
+    .section {
+      padding: 100px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 8vw, 72px);
+      letter-spacing: 4px;
+      line-height: 1;
+      margin-bottom: 60px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+    }
 
     .step {
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 24px 22px; display: flex; gap: 18px; align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      transition: border-color 0.2s;
     }
-    .step:first-child { border-radius: 14px 14px 0 0; }
-    .step:last-child { border-radius: 0 0 14px 14px; }
+    .step:first-child { border-radius: 14px 0 0 14px; }
+    .step:last-child { border-radius: 0 14px 14px 0; }
+    .step:hover { border-color: #333; }
 
     .step-num {
-      font-family: 'Bebas Neue', sans-serif; font-size: 32px;
-      color: var(--green-dim); line-height: 1; min-width: 28px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--green-dim);
+      line-height: 1;
+      margin-bottom: 16px;
     }
 
     .step-title {
-      font-family: 'Bebas Neue', sans-serif; font-size: 19px;
-      letter-spacing: 2px; margin-bottom: 5px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
     }
 
-    .step-desc { font-size: 12px; line-height: 1.8; color: #666; }
+    .step-desc {
+      font-size: 12px;
+      line-height: 1.8;
+      color: #666;
+    }
 
-    /* RATINGS */
-    .ratings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+    /* FEATURES */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 0;
+    }
 
-    .rating-card { border-radius: 12px; padding: 18px 14px; text-align: center; }
-    .rating-card.green { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.15); }
-    .rating-card.yellow { background: rgba(234,179,8,0.07); border: 1px solid rgba(234,179,8,0.15); }
-    .rating-card.red { background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.15); }
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .feature:hover { transform: translateY(-4px); border-color: #2a2a2a; }
 
-    .rating-dot { width: 32px; height: 32px; border-radius: 7px; margin: 0 auto 8px; }
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 12px;
+      line-height: 1.8;
+      color: #666;
+    }
+
+    /* RATING SYSTEM */
+    .ratings {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 60px;
+    }
+
+    .rating-card {
+      border-radius: 14px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .rating-card.green { background: rgba(34,197,94,0.08); border: 1.5px solid rgba(34,197,94,0.2); }
+    .rating-card.yellow { background: rgba(234,179,8,0.08); border: 1.5px solid rgba(234,179,8,0.2); }
+    .rating-card.red { background: rgba(239,68,68,0.08); border: 1.5px solid rgba(239,68,68,0.2); }
+
+    .rating-dot {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      margin: 0 auto 16px;
+    }
     .rating-card.green .rating-dot { background: #22c55e; }
     .rating-card.yellow .rating-dot { background: #eab308; }
     .rating-card.red .rating-dot { background: #ef4444; }
 
     .rating-label {
-      font-family: 'Bebas Neue', sans-serif; font-size: 14px;
-      letter-spacing: 1px; margin-bottom: 3px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
     }
     .rating-card.green .rating-label { color: #22c55e; }
     .rating-card.yellow .rating-label { color: #eab308; }
     .rating-card.red .rating-label { color: #ef4444; }
 
-    .rating-pts { font-size: 10px; color: var(--muted); }
-
-    /* PHILOSOPHY */
-    .philosophy-text { font-size: 13px; line-height: 2; color: #777; }
-    .philosophy-text span { color: var(--text); }
-
-    .stats-row {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 36px; border-radius: 14px; overflow: hidden;
+    .rating-pts {
+      font-size: 12px;
+      color: var(--muted);
     }
 
-    .stat { background: var(--surface); border: 1px solid var(--border); padding: 22px 12px; text-align: center; }
-    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--green); line-height: 1; }
-    .stat-label { font-size: 9px; letter-spacing: 2px; color: var(--muted); margin-top: 6px; }
-
-    /* INSTALL */
-    .beta-badge {
-      display: inline-block; background: rgba(34,197,94,0.1);
-      border: 1px solid rgba(34,197,94,0.2); color: var(--green);
-      font-size: 10px; letter-spacing: 3px; padding: 5px 12px;
-      border-radius: 20px; margin-bottom: 16px;
+    .rating-desc {
+      font-size: 11px;
+      color: #444;
+      margin-top: 8px;
+      line-height: 1.7;
     }
 
-    .install-steps { display: flex; flex-direction: column; gap: 2px; }
-
-    .install-step {
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 20px 22px; display: flex; gap: 16px; align-items: center;
-    }
-    .install-step:first-child { border-radius: 14px 14px 0 0; }
-    .install-step:last-child { border-radius: 0 0 14px 14px; }
-
-    .install-icon { font-size: 22px; min-width: 32px; text-align: center; }
-
-    .install-title {
-      font-family: 'Bebas Neue', sans-serif; font-size: 16px;
-      letter-spacing: 2px; color: var(--green); margin-bottom: 3px;
+    /* SQUAD SECTION */
+    .squad-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
-    .install-desc { font-size: 11px; line-height: 1.7; color: #666; }
+    .leaderboard-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 420px;
+    }
 
-    /* CTA */
-    .cta-section { text-align: center; padding: 80px 24px; position: relative; }
+    .lb-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+    .lb-row.me { border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+
+    .lb-rank {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      width: 28px;
+      text-align: center;
+    }
+
+    .lb-name {
+      flex: 1;
+      font-size: 14px;
+    }
+    .lb-row.me .lb-name { color: var(--green); }
+
+    .lb-pts {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      color: var(--green);
+    }
+
+    .squad-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) {
+      .squad-grid { grid-template-columns: 1fr; }
+      .ratings { grid-template-columns: 1fr; }
+      .step:first-child { border-radius: 14px 14px 0 0; }
+      .step:last-child { border-radius: 0 0 14px 14px; }
+      nav { padding: 16px 20px; }
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center;
+      padding: 120px 24px;
+      position: relative;
+    }
 
     .cta-glow {
-      position: absolute; top: 50%; left: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      width: 400px; height: 400px;
+      width: 500px;
+      height: 500px;
       background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .cta-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(52px, 14vw, 96px);
-      letter-spacing: 6px; line-height: 1; margin-bottom: 20px;
+      font-size: clamp(48px, 10vw, 96px);
+      letter-spacing: 6px;
+      line-height: 1;
+      margin-bottom: 24px;
     }
 
-    .cta-sub { font-size: 11px; color: var(--muted); letter-spacing: 3px; margin-bottom: 36px; }
+    .cta-sub {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 3px;
+      margin-bottom: 48px;
+    }
 
+    /* FOOTER */
     footer {
-      border-top: 1px solid var(--border); padding: 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 10px; color: var(--muted); letter-spacing: 2px;
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 2px;
     }
 
-    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--green); letter-spacing: 4px; }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      color: var(--green);
+      letter-spacing: 4px;
+    }
 
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+
+    /* SCROLL REVEAL */
     .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* TICKER */
+    .ticker-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      background: var(--bg);
+    }
+
+    .ticker {
+      display: flex;
+      gap: 60px;
+      animation: ticker 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    .ticker-item {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .ticker-item span { color: var(--green); margin-right: 8px; }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
     <div class="nav-logo">GRIND</div>
     <a href="https://grind-app.netlify.app" class="nav-cta">OPEN APP</a>
@@ -322,77 +539,189 @@
     <div class="hero-eyebrow">Daily Accountability Tracker</div>
     <h1 class="hero-title">GRIND</h1>
     <div class="hero-tagline">Track Your Standard</div>
-    <p class="hero-desc">Rate every day. Build streaks. Track your progress all year long.</p>
+    <p class="hero-desc">
+      Rate every day. Build streaks. Compete with your squad. 
+      GRIND turns your daily effort into a score — so you can 
+      see exactly where you stand.
+    </p>
     <div class="hero-buttons">
       <a href="https://grind-app.netlify.app" class="btn-primary">START TRACKING</a>
-      <a href="#how-it-works" class="btn-secondary">HOW IT WORKS</a>
+      <a href="#how-it-works" class="btn-secondary">SEE HOW IT WORKS</a>
     </div>
+
     <div class="calendar-preview">
       <div class="cal-label">FEBRUARY 2026</div>
       <div class="mini-calendar">
-        <div class="cal-cell empty"></div><div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div><div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div><div class="cal-cell empty"></div>
-        <div class="cal-cell green"></div><div class="cal-cell green"></div>
-        <div class="cal-cell yellow"></div><div class="cal-cell green"></div>
-        <div class="cal-cell green"></div><div class="cal-cell red"></div>
-        <div class="cal-cell green"></div><div class="cal-cell green"></div>
-        <div class="cal-cell green"></div><div class="cal-cell green"></div>
-        <div class="cal-cell yellow"></div><div class="cal-cell green"></div>
-        <div class="cal-cell green"></div><div class="cal-cell green"></div>
-        <div class="cal-cell red"></div><div class="cal-cell green"></div>
-        <div class="cal-cell green"></div><div class="cal-cell green"></div>
-        <div class="cal-cell green"></div><div class="cal-cell yellow"></div>
-        <div class="cal-cell green"></div><div class="cal-cell green"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell yellow"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell red"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell yellow"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell red"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell yellow"></div>
+        <div class="cal-cell green"></div>
+        <div class="cal-cell green"></div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <div class="ticker-item"><span>●</span> SQUAD ACCOUNTABILITY</div>
+      <div class="ticker-item"><span>●</span> TRACK YOUR STANDARD</div>
+      <div class="ticker-item"><span>●</span> DAILY ACCOUNTABILITY</div>
+      <div class="ticker-item"><span>●</span> RISE WITH YOUR CREW</div>
+      <div class="ticker-item"><span>●</span> BUILD YOUR STREAK</div>
+      <div class="ticker-item"><span>●</span> EARN POINTS</div>
+      <div class="ticker-item"><span>●</span> SQUAD ACCOUNTABILITY</div>
+      <div class="ticker-item"><span>●</span> TRACK YOUR STANDARD</div>
+      <div class="ticker-item"><span>●</span> DAILY ACCOUNTABILITY</div>
+      <div class="ticker-item"><span>●</span> RISE WITH YOUR CREW</div>
+      <div class="ticker-item"><span>●</span> BUILD YOUR STREAK</div>
+      <div class="ticker-item"><span>●</span> EARN POINTS</div>
+    </div>
+  </div>
 
   <!-- HOW IT WORKS -->
   <section class="section" id="how-it-works">
     <div class="reveal">
       <div class="section-label">How It Works</div>
       <h2 class="section-title">THREE STEPS.<br>ONE HABIT.</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <div>
-            <div class="step-title">RATE YOUR DAY</div>
-            <p class="step-desc">Every day gets one honest rating. No lengthy journaling — just real accountability.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <div>
-            <div class="step-title">EARN POINTS & LEVEL UP</div>
-            <p class="step-desc">Green days earn +15 pts. Yellow +5. Red days cost -10. Watch your score grow as your discipline builds.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <div>
-            <div class="step-title">RISE WITH YOUR CREW</div>
-            <p class="step-desc">Create a group, share a 6-digit code, and track progress alongside people who push you forward.</p>
-          </div>
-        </div>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">RATE YOUR DAY</div>
+        <p class="step-desc">Every day gets one of three ratings — Locked In, Decent, or Off Day. No lengthy journaling. Just honest accountability.</p>
       </div>
-      <div class="ratings">
-        <div class="rating-card green">
-          <div class="rating-dot"></div>
-          <div class="rating-label">LOCKED IN</div>
-          <div class="rating-pts">+15 PTS</div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">EARN POINTS</div>
+        <p class="step-desc">Green days earn +15 points. Yellow days earn +5. Red days cost you -10. Watch your score climb as your discipline builds.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">COMPETE WITH YOUR SQUAD</div>
+        <p class="step-desc">Create a group, share your code, and track your progress alongside people who push you to be your best every day.</p>
+      </div>
+    </div>
+
+    <!-- RATINGS -->
+    <div class="ratings reveal">
+      <div class="rating-card green">
+        <div class="rating-dot"></div>
+        <div class="rating-label">LOCKED IN</div>
+        <div class="rating-pts">+15 PTS</div>
+        <div class="rating-desc">Deep work. Full effort. You showed up and delivered.</div>
+      </div>
+      <div class="rating-card yellow">
+        <div class="rating-dot"></div>
+        <div class="rating-label">DECENT</div>
+        <div class="rating-pts">+5 PTS</div>
+        <div class="rating-desc">Decent effort. Not your best, but you stayed in the game.</div>
+      </div>
+      <div class="rating-card red">
+        <div class="rating-dot"></div>
+        <div class="rating-label">OFF DAY</div>
+        <div class="rating-pts">−10 PTS</div>
+        <div class="rating-desc">It happens. Own it, log it, and come back stronger tomorrow.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="reveal">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">EVERYTHING<br>YOU NEED.</h2>
+    </div>
+    <div class="features reveal">
+      <div class="feature">
+        <div class="feature-icon">📅</div>
+        <div class="feature-title">DAILY CALENDAR</div>
+        <p class="feature-desc">See your entire month at a glance. Green, yellow, and red — your effort visualized in real time.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-title">STREAKS & LEVELS</div>
+        <p class="feature-desc">Build green day streaks and level up as you accumulate points. Every day compounds.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">YEAR HEATMAP</div>
+        <p class="feature-desc">A GitHub-style heatmap of your entire year. Watch your consistency fill in over time.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">✍️</div>
+        <div class="feature-title">ACCOMPLISHMENTS</div>
+        <p class="feature-desc">Log your wins for each day. Look back and see everything you've built.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🏆</div>
+        <div class="feature-title">ACHIEVEMENTS</div>
+        <p class="feature-desc">Unlock badges for milestones — Electric Week, Century Club, Comeback Kid, and more.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⊞</div>
+        <div class="feature-title">SQUAD LEADERBOARD</div>
+        <p class="feature-desc">Create a group, share a code, and track your progress alongside friends, family, or coworkers.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SQUAD -->
+  <section class="squad-section">
+    <div class="section">
+      <div class="squad-grid reveal">
+        <div>
+          <div class="section-label">Squad</div>
+          <h2 class="section-title">RISE WITH<br>YOUR<br>CREW.</h2>
+          <p style="font-size:13px; color:#666; line-height:1.9; max-width:380px;">
+            Create a group, share a 6-digit code, and your squad is live. 
+            Everyone's points sync in real time. See who's showing up every day 
+            and push each other to be better — together.
+          </p>
         </div>
-        <div class="rating-card yellow">
-          <div class="rating-dot"></div>
-          <div class="rating-label">DECENT</div>
-          <div class="rating-pts">+5 PTS</div>
-        </div>
-        <div class="rating-card red">
-          <div class="rating-dot"></div>
-          <div class="rating-label">OFF DAY</div>
-          <div class="rating-pts">−10 PTS</div>
+        <div class="leaderboard-preview">
+          <div class="lb-row">
+            <div class="lb-rank">🥇</div>
+            <div class="lb-name">DrMutualFunds</div>
+            <div class="lb-pts">220</div>
+          </div>
+          <div class="lb-row me">
+            <div class="lb-rank">🥈</div>
+            <div class="lb-name">Will (you)</div>
+            <div class="lb-pts">220</div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank">🥉</div>
+            <div class="lb-name">WillyT</div>
+            <div class="lb-pts">130</div>
+          </div>
         </div>
       </div>
     </div>
@@ -405,80 +734,102 @@
     <div class="reveal">
       <div class="section-label">The Philosophy</div>
       <h2 class="section-title">MORE THAN<br>AN APP.</h2>
-      <p class="philosophy-text">
-        GRIND is a productivity tool built on <span>visualization</span> and <span>gamification</span>. 
-        By turning your daily effort into a color, a score, and a streak, your discipline becomes 
-        something you can actually see — not just feel.
-      </p>
-      <p class="philosophy-text" style="margin-top:18px;">
-        At the end of the year, you'll have a complete visual record of how hard you showed up. 
-        Not a rough feeling. Not a guess. A real, undeniable picture of your effort — all 365 days.
-      </p>
-      <p class="philosophy-text" style="margin-top:18px;">
-        This is an <span>honor system</span>. Nobody is watching. You set the standard. 
-        Because the people who reach the next level aren't the ones who fake it — 
-        they're the ones who see themselves clearly and show up anyway.
-      </p>
-      <div class="stats-row">
-        <div class="stat">
-          <div class="stat-num">365</div>
-          <div class="stat-label">DAYS A YEAR</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">3</div>
-          <div class="stat-label">SECS TO LOG</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">1</div>
-          <div class="stat-label">STANDARD</div>
-        </div>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:40px; margin-top:0;" class="reveal">
+      <div>
+        <p style="font-size:14px; line-height:2; color:#777;">
+          GRIND is a productivity tool built on two powerful principles — 
+          <span style="color:var(--text)">visualization</span> and 
+          <span style="color:var(--text)">gamification</span>. 
+          By turning your daily effort into a color, a score, and a streak, 
+          your discipline becomes something you can actually see — not just feel.
+        </p>
+        <p style="font-size:14px; line-height:2; color:#777; margin-top:24px;">
+          At the end of the year, you'll have a complete visual record of how hard you showed up. 
+          Not a rough feeling. Not a guess. A real, undeniable picture of your effort — 
+          day by day, month by month, all 365 days.
+        </p>
+      </div>
+      <div>
+        <p style="font-size:14px; line-height:2; color:#777;">
+          This is an <span style="color:var(--text)">honor system</span>. 
+          Nobody is watching. Nobody is grading you. 
+          You decide what a green day means, what a red day means, 
+          and what standard you're holding yourself to.
+        </p>
+        <p style="font-size:14px; line-height:2; color:#777; margin-top:24px;">
+          That's the point. The goal isn't perfection — it's 
+          <span style="color:var(--text)">honest self-awareness</span>. 
+          Because the people who get to the next level in life aren't the ones 
+          who fake it. They're the ones who see themselves clearly and 
+          show up anyway.
+        </p>
+      </div>
+    </div>
+
+    <!-- STATS ROW -->
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:2px; margin-top:60px; border-radius:14px; overflow:hidden;" class="reveal">
+      <div style="background:var(--surface); border:1px solid var(--border); padding:32px 24px; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:52px; color:var(--green); line-height:1;">365</div>
+        <div style="font-size:11px; letter-spacing:3px; color:var(--muted); margin-top:8px;">DAYS A YEAR</div>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:32px 24px; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:52px; color:var(--green); line-height:1;">3</div>
+        <div style="font-size:11px; letter-spacing:3px; color:var(--muted); margin-top:8px;">SECONDS TO LOG</div>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:32px 24px; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:52px; color:var(--green); line-height:1;">1</div>
+        <div style="font-size:11px; letter-spacing:3px; color:var(--muted); margin-top:8px;">STANDARD TO KEEP</div>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- INSTALL -->
+  <!-- BETA / HOW TO INSTALL -->
   <section class="section">
     <div class="reveal">
-      <div class="beta-badge">EARLY ACCESS</div>
-      <div class="section-label">Get The App</div>
-      <h2 class="section-title">NO APP STORE<br>NEEDED.</h2>
-      <p style="font-size:13px; line-height:1.9; color:#666; margin-bottom:28px;">
-        No App Store. No lengthy downloads. No manual updates. 
-        GRIND installs in seconds and always runs the latest version — 
-        <span style="color:var(--text)">automatically</span>. 
-        Add it to your home screen and it feels just like a native app.
+      <div class="section-label">Early Access</div>
+      <h2 class="section-title">WE'RE STILL<br>BUILDING.</h2>
+    </div>
+    <div style="max-width:600px; margin-bottom:48px;" class="reveal">
+      <p style="font-size:14px; line-height:2; color:#777;">
+        GRIND is currently in active development. New features are being added regularly 
+        and we're improving the experience based on real feedback. 
+        <span style="color:var(--text)">You're getting in early</span> — and that matters. 
+        Your feedback shapes what gets built next.
       </p>
-      <div class="install-steps">
-        <div class="install-step">
-          <div class="install-icon">🧭</div>
-          <div>
-            <div class="install-title">OPEN IN SAFARI</div>
-            <p class="install-desc">Visit <span style="color:var(--text)">grind-app.netlify.app</span> in Safari on iPhone. Must use Safari — not Chrome.</p>
-          </div>
+    </div>
+
+    <!-- INSTALL STEPS -->
+    <div class="reveal">
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:3px; color:var(--text); margin-bottom:24px;">HOW TO ADD TO YOUR HOME SCREEN</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:28px 24px;">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--green-dim); line-height:1; margin-bottom:12px;">01</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; margin-bottom:8px; color:var(--green);">OPEN IN SAFARI</div>
+          <p style="font-size:12px; line-height:1.8; color:#666;">Open <span style="color:var(--text)">grind-app.netlify.app</span> in Safari on your iPhone. Does not work with Chrome or other browsers.</p>
         </div>
-        <div class="install-step">
-          <div class="install-icon">⬆️</div>
-          <div>
-            <div class="install-title">TAP THE SHARE BUTTON</div>
-            <p class="install-desc">At the bottom of Safari, tap the share icon — a box with an arrow pointing up.</p>
-          </div>
+
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:28px 24px;">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--green-dim); line-height:1; margin-bottom:12px;">02</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; margin-bottom:8px; color:var(--green);">TAP THE SHARE ICON</div>
+          <p style="font-size:12px; line-height:1.8; color:#666;">At the bottom of Safari, tap the <span style="color:var(--text)">Share button</span> — it looks like a box with an arrow pointing up.</p>
         </div>
-        <div class="install-step">
-          <div class="install-icon">➕</div>
-          <div>
-            <div class="install-title">ADD TO HOME SCREEN</div>
-            <p class="install-desc">Scroll down and tap "Add to Home Screen," then tap Add in the top right.</p>
-          </div>
+
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:28px 24px;">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--green-dim); line-height:1; margin-bottom:12px;">03</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; margin-bottom:8px; color:var(--green);">ADD TO HOME SCREEN</div>
+          <p style="font-size:12px; line-height:1.8; color:#666;">Scroll down in the share menu and tap <span style="color:var(--text)">"Add to Home Screen."</span> Tap Add in the top right corner.</p>
         </div>
-        <div class="install-step">
-          <div class="install-icon">✅</div>
-          <div>
-            <div class="install-title">YOU'RE IN</div>
-            <p class="install-desc">GRIND lives on your home screen and opens full screen — just like a native app. No App Store required.</p>
-          </div>
+
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:28px 24px;">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--green-dim); line-height:1; margin-bottom:12px;">04</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; margin-bottom:8px; color:var(--green);">OPEN LIKE AN APP</div>
+          <p style="font-size:12px; line-height:1.8; color:#666;">GRIND now lives on your home screen and opens full screen — just like a native app. No App Store needed.</p>
         </div>
+
       </div>
     </div>
   </section>
@@ -495,18 +846,23 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-logo">GRIND</div>
     <div>TRACK YOUR STANDARD</div>
   </footer>
 
   <script>
+    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
       });
-    }, { threshold: 0.08 });
+    }, { threshold: 0.1 });
     reveals.forEach(r => observer.observe(r));
   </script>
 
